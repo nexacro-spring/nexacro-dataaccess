@@ -7,18 +7,13 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.nexacro.spring.dao.Dbms;
 import com.nexacro.spring.dao.DbmsProvider;
-import com.nexacro.spring.dao.dbms.Hsql;
 import com.nexacro.spring.dao.jdbc.JdbcRowHandler;
 import com.nexacro.spring.data.NexacroFirstRowHandler;
-import com.nexacro.xapi.data.DataSet;
-import com.nexacro.xapi.tx.PlatformException;
 
 /**
  * <pre>

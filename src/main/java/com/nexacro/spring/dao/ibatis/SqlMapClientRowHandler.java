@@ -2,8 +2,6 @@ package com.nexacro.spring.dao.ibatis;
 
 import java.util.Map;
 
-import org.springframework.dao.DataAccessException;
-
 import com.ibatis.sqlmap.client.event.RowHandler;
 import com.nexacro.spring.dao.NexacroFirstRowException;
 import com.nexacro.spring.data.NexacroFirstRowHandler;

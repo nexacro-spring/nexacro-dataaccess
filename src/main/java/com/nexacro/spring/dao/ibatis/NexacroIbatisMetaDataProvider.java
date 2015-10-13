@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.aopalliance.intercept.MethodInvocation;
 import org.aspectj.lang.JoinPoint.StaticPart;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.slf4j.Logger;

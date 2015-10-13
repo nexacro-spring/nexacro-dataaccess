@@ -1,7 +1,6 @@
 package nexacro.sample.web;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 
 import nexacro.sample.service.LargeDataService;
 

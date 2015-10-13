@@ -4,17 +4,12 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import org.apache.ibatis.executor.BaseExecutor;
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.stereotype.Repository;
 
 /**
  *

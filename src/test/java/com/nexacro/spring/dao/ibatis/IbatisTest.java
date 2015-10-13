@@ -1,11 +1,7 @@
 package com.nexacro.spring.dao.ibatis;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
-
-import javax.annotation.Resource;
 
 import nexacro.sample.service.dao.ibatis.SampleIbatisDAO;
 import nexacro.sample.vo.SampleVO;

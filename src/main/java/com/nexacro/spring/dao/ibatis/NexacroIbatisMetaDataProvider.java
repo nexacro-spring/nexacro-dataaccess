@@ -3,6 +3,7 @@ package com.nexacro.spring.dao.ibatis;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -49,7 +50,7 @@ public class NexacroIbatisMetaDataProvider {
 		if(result instanceof List) {
 			List listResult = (List) result;
 			if(listResult.size() == 0) {
-				return doGetQueryMetaData(pjp.getTarget(), pjp.getArgs(), result);
+				return doGetQueryMetaData(pjp.getTarget(), pjp.getArgs());
 			}
 		}
 		
@@ -59,10 +60,10 @@ public class NexacroIbatisMetaDataProvider {
 	
 	// EgovAbstractDAO를 상속받아 처리 할 경우 superclass 에 정의 된 list 형태는 AOP가 적용되지 않는다. 
 	// framework 별 sample 구성 시 추상 클래스를 제공하도록 하자. spring의 경우 aop를 바로 적용하도록 하자.
-	public Object doGetQueryMetaData(Object daoObject, Object[] arguments, Object originalResult) {
+	public Object doGetQueryMetaData(Object daoObject, Object[] arguments) {
 	
 		if(arguments == null || arguments.length < 2) {
-			return originalResult;
+			return new ArrayList();
 		}
 		
 		Class<?> daoClass = daoObject.getClass();
@@ -106,7 +107,7 @@ public class NexacroIbatisMetaDataProvider {
 			
 		} catch(Throwable e) {
 			logger.error("unsupported getting metadata. e={}", e.getMessage());
-			return originalResult;
+			return new ArrayList();
 		}
 		
 		// execute..
@@ -115,7 +116,7 @@ public class NexacroIbatisMetaDataProvider {
 			queryMetaData = executeMethod.invoke(sqlMapClientTemplate, sqlMapClientCallback);
 		} catch(Throwable e) {
 			logger.error("an error has occurred while querying the metadata. e={}", e.getMessage());
-			return originalResult;
+			return new ArrayList();
 		}
 		
 		return queryMetaData;

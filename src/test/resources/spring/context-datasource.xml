@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:jee="http://www.springframework.org/schema/jee"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd"> 
+    
+    <!-- 
+       - DataSource  
+       	만약 DataSource를 추가로 생성하여 사용할 경우에는 반드시 AbstractDAO를 상속받는   
+       - 하위 Class를 추가하여 사용하여야 한다.
+       - (단, 하나 이상의 DataSource를 사용할 경우에만 해당함.)
+       -
+       - ex> 만약 mysql를 새로 추가할경우 AbstractDAO를 상속받는 MysqlAbstractDAO를 생성하여야 한다.
+     -->
+
+    <!-- hsql 메모리 DBMS :  JDBC -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <!-- 
+        <property name="driverClassName" value="core.log.jdbc.driver.HSQLDriver"/>
+        <property name="url" value="'jdbc:log4'jdbc:hsqldb:hsql://localhost:9001/sampledb"/>
+        <property name="username" value="sa"/>
+         -->
+        <property name="driverClassName" value="${jdbcs.hsql.class}"/>
+        <property name="url" value="${jdbcs.hsql.url}"/>
+        <property name="username" value="${jdbcs.hsql.user}"/>
+    </bean>
+    
+    <!-- hsql 메모리 DBMS : JNDI
+    <jee:jndi-lookup id="dataSource" jndi-name="jndiname" resource-ref="true"/>
+    -->
+    
+    <!-- oracle -->
+    <!-- 
+    <bean id="dataSourceOracle" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbcs.oracle.class}"/>
+        <property name="url" value="${jdbcs.oracle.url}"/>
+        <property name="username" value="${jdbcs.oracle.user}"/>
+        <property name="password" value="${jdbcs.oracle.pwd}"/>
+    </bean>
+ 	-->
+ 	
+    <!-- mssql 
+    <bean id="dataSourceMssql" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+        <property name="url" value="jdbc:sqlserver://아이피:1433;DatabaseName=디비이름"/>
+        <property name="username" value="oms"/>
+        <property name="password" value="oms2315"/>
+    </bean>
+    -->
+
+	<!-- mysql 
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://db2:1621/rte"/>
+        <property name="username" value="rte"/>
+        <property name="password" value="rte01"/>
+    </bean>
+    -->
+</beans>

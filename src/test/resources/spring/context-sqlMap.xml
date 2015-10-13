@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+    	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd			
+    	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+    <!-- SqlMap setup for iBATIS Database Layer (org.springframework.orm.ibatis.SqlMapClientFactoryBean)-->
+    <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+        <!-- sqlmap list -->
+        <property name="mappingLocations" value="classpath:/ibatis/sqlmap/hsql/**/*_sql.xml"></property>
+        <!-- config path -->
+        <property name="configLocation" value="classpath:/ibatis/config/hsql/sql-map-config.xml"/>
+        <!-- datasource in context-datasource.xml -->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- SqlMap setup for iBATIS Database Layer (org.springframework.orm.ibatis.SqlMapClientFactoryBean)-->
+    <bean id="sqlMapClientHsql" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+        <!-- sqlmap list -->
+        <property name="mappingLocations" value="classpath:/ibatis/sqlmap/hsql/**/*_sql.xml"></property>
+        <!-- config path -->
+        <property name="configLocation" value="classpath:/ibatis/config/hsql/sql-map-config.xml"/>
+        <!-- datasource in context-datasource.xml -->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- Oracle -->
+    <!-- 
+	<bean id="sqlMapClientOracle" class="able.com.sql.ibatis.reload.ReloadableSqlMapClientFactoryBean">
+		<property name="mappingLocations" value="classpath:/ibatis/sqlmap/oracle/**/*_sql.xml"></property>
+        <property name="configLocation" value="classpath:/ibatis/config/oracle/sql-map-config.xml"/>
+        <property name="dataSource" ref="dataSourceOracle"/>
+        <property name="checkInterval" value="100"/>
+    </bean>
+    -->
+     
+    <!-- ibatis Log property -->
+    <!-- 
+    <bean id="sqlLogProperty" class="able.com.sql.ibatis.SqlLogProperty">
+        <property name="queryId" value="true"/>
+        <property name="logKey" value="true"/>
+        <property name="startURI" value="true"/>
+        <property name="startJsp" value="true"/>
+        <property name="targetURI" value="true"/>
+    </bean>
+     -->
+</beans>

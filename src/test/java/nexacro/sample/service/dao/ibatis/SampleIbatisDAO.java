@@ -11,6 +11,7 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
+import com.nexacro.spring.dao.ibatis.NexacroIbatisMetaDataProvider;
 
 /**
  * <pre>
@@ -31,12 +32,15 @@ import com.ibatis.sqlmap.client.SqlMapClient;
  *  2012. 1. 31.     djkim     최초 생성
  * </pre>
  */
-@Repository("sampleDAO")
+@Repository("sampleIbatisDAO")
 public class SampleIbatisDAO extends SqlMapClientDaoSupport {
 
-	// meta data 획득. proxy 처리.
-	@Resource(name = "sampleDAO")
-	private SampleIbatisDAO self;
+//	// meta data 획득. proxy 처리.
+//	@Resource(name = "sampleIbatisDAO")
+//	private SampleIbatisDAO self;
+	
+	@Resource(name = "ibatisMetaDataProvider")
+	private NexacroIbatisMetaDataProvider ibatisMetaDataProvider;
 	
 	@Resource(name = "sqlMapClient")
 	public void setSuperSqlMapClient(SqlMapClient sqlMapClient) {
@@ -44,16 +48,23 @@ public class SampleIbatisDAO extends SqlMapClientDaoSupport {
 	}
 
 	public List<SampleVO> selectSampleVoList(SampleVO searchVO) {
-		return self.list("sampleDAO.selectSampleVOList", searchVO);
+		return list("sampleDAO.selectSampleVOList", searchVO);
 	}
 
 	public List<Map> selectSampleVoMap(SampleVO searchVO) {
 //		return self.list("sampleDAO.selectSampleVOMap", searchVO);
-		return self.list("sampleDAO.selectSampleVOMap", searchVO);
+		return list("sampleDAO.selectSampleVOMap", searchVO);
 	}
 	
 	public List list(String queryId, Object obj) {
-		return getSqlMapClientTemplate().queryForList(queryId, obj);
+		List<?> list = getSqlMapClientTemplate().queryForList(queryId, obj);
+		if (list == null || list.size() == 0) {
+			list = getMetaData(queryId, obj, list);
+		}
+		return list;
 	}
 
+	private List<?> getMetaData(String queryId, Object parameterObject, List originalResult) {
+		return (List<?>) ibatisMetaDataProvider.doGetQueryMetaData(this, new Object[]{queryId, parameterObject});
+	}
 }

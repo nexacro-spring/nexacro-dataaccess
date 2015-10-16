@@ -72,11 +72,12 @@ public class DbVendorsProvider implements DbmsProvider {
 		this.dbverdors = dbverdors;
 	}
 
-	public Dbms getDbms(DataSource dataSource) {
-		if (dataSource == null)
-			throw new NullPointerException("dataSource cannot be null");
+	public Dbms getDbms(Connection conn) {
+		if (conn == null)
+			throw new NullPointerException("Connection cannot be null");
+		
 		try {
-			String productName = getDatabaseProductName(dataSource);
+			String productName = getDataBaseProductName(conn);
 			if (this.dbverdors != null) {
 				Dbms dbms = dbverdors.get(productName);
 //				for (Map.Entry<Object, Object> property : properties.entrySet()) {
@@ -87,23 +88,36 @@ public class DbVendorsProvider implements DbmsProvider {
 				return dbms; // no match, return null
 			}
 		} catch (Exception e) {
-			log.error("Could not get a Dbms from dataSource", e);
+			log.error("Could not get a Dbms from Connection", e);
 		}
 		
 		return null;
 	}
-
-	private String getDatabaseProductName(DataSource dataSource)
-			throws SQLException {
-		Connection con = null;
+	
+	public Dbms getDbms(DataSource dataSource) {
+		if (dataSource == null)
+			throw new NullPointerException("dataSource cannot be null");
+		
 		try {
-			con = dataSource.getConnection();
-			DatabaseMetaData metaData = con.getMetaData();
+			Connection connection = dataSource.getConnection();
+			return getDbms(connection);
+		} catch (SQLException e) {
+			log.error("Could not get a Dbms from dataSource", e);
+		}
+		
+		return null;
+		
+	}
+
+	
+	private String getDataBaseProductName(Connection conn) throws SQLException {
+		try {
+			DatabaseMetaData metaData = conn.getMetaData();
 			return metaData.getDatabaseProductName();
 		} finally {
-			if (con != null) {
+			if (conn != null) {
 				try {
-					con.close();
+					conn.close();
 				} catch (SQLException e) {
 					// ignored
 				}

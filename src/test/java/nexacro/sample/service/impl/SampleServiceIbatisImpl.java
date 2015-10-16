@@ -8,6 +8,7 @@ import nexacro.sample.service.SampleService;
 import nexacro.sample.service.dao.ibatis.SampleIbatisDAO;
 import nexacro.sample.vo.SampleVO;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -29,16 +30,10 @@ import org.springframework.stereotype.Service;
  *  2012. 1. 31.     djkim     최초 생성
  * </pre>
  */
-@Service("sampleService")
-public class SampleServiceImpl implements SampleService {
+@Service("sampleServiceIbatis")
+public class SampleServiceIbatisImpl implements SampleService {
 
-    /**
-     * SampleDAO class 선언 (SampleDAO) Class Injection)
-     * (SampleDAO)sampleDAO
-     */
-    // @Autowired(required = false) // Type 정의
-    @Resource(name = "sampleDAO")
-    // Name 정의
+    @Autowired
     private SampleIbatisDAO sampleDAO;
 
     @Override

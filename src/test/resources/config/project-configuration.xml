@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuratons>
+
+	<!-- encrypt.bat input=core.log.jdbc.driver.HSQLDriver password={input password} algorithm=PBEWithMD5AndDES  -->
+
+	<jdbcs>
+		<hsql>
+            <initialize-database>true</initialize-database>
+            <!-- log4sql class -->
+            <!-- core.log.jdbc.driver.HSQLDriver -->
+            <class>ENC(d1Az6/46wRM9t4dvvgCsEBvCIW6uCuc4oD782SpfsVvWP64aHhlJeg==)</class>
+			<url>ENC(itpK0ouWPt1+G3/9bpqxEYSZ1Yx/NmNc/cNC2u2jpwFCHlm1aP+xXjAa/jrALm0ESR+DckZCbEsXlkoq3nyHJQ==)</url>
+			<user>ENC(Fv/Z5H8O6CrJ+EYSiIYhkw==)</user>
+		</hsql>
+	</jdbcs>	
+</configuratons>

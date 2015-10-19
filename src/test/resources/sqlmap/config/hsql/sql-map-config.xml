@@ -4,7 +4,7 @@
 
 <sqlMapConfig>
     <settings useStatementNamespaces="false" />
-
-    <sqlMap resource="ibatis/sqlmap/hsql/dummy.xml" />
+	
+	<sqlMap resource="sqlmap/sqlmaps/dummy.xml" />
     
 </sqlMapConfig>

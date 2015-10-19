@@ -8,6 +8,8 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
         ">
 
+	<bean id="contextApplicationContextProvider" class="com.nexacro.spring.context.ApplicationContextProvider" lazy-init="false" />
+
 	<bean id="hsqlDbms" class="com.nexacro.spring.dao.dbms.Hsql" />
 	<bean id="oracleDbms" class="com.nexacro.spring.dao.dbms.Oracle" />
 	<bean id="mssqlDbms" class="com.nexacro.spring.dao.dbms.Mssql" />
@@ -22,6 +24,11 @@
 	            <entry key="Oracle" value-ref="oracleDbms"/>
 	        </map>
 	    </property>
+	</bean>
+	
+	<!-- test -->
+	<bean id="ibatisMetaDataProvider" class="com.nexacro.spring.dao.ibatis.NexacroIbatisMetaDataProvider" >
+		<property name="dbmsProvider" ref="dbmsProvider" />
 	</bean>
 	
 </beans>

@@ -12,31 +12,20 @@
 
     <!-- SqlMap setup for iBATIS Database Layer (org.springframework.orm.ibatis.SqlMapClientFactoryBean)-->
     <!--  <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"> -->
-    <bean id="sqlMapClient" class="egovframework.rte.psl.orm.ibatis.SqlMapClientFactoryBean">
-        <!-- sqlmap list -->
-        <property name="mappingLocations" value="classpath:/ibatis/sqlmap/hsql/**/*_sql.xml"></property>
+    <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
         <!-- config path -->
-        <property name="configLocation" value="classpath:/ibatis/config/hsql/sql-map-config.xml"/>
-        <!-- datasource in context-datasource.xml -->
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-
-    <!-- SqlMap setup for iBATIS Database Layer (org.springframework.orm.ibatis.SqlMapClientFactoryBean)-->
-    <!--  <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"> -->
-    <bean id="sqlMapClientHsql" class="egovframework.rte.psl.orm.ibatis.SqlMapClientFactoryBean">
+        <property name="configLocation" value="classpath:/sqlmap/config/hsql/sql-map-config.xml"/>
         <!-- sqlmap list -->
-        <property name="mappingLocations" value="classpath:/ibatis/sqlmap/hsql/**/*_sql.xml"></property>
-        <!-- config path -->
-        <property name="configLocation" value="classpath:/ibatis/config/hsql/sql-map-config.xml"/>
+        <property name="mappingLocations" value="classpath:/sqlmap/sqlmaps/**/*_hsql.xml"></property>
         <!-- datasource in context-datasource.xml -->
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <!-- Oracle -->
     <!-- AbstractDAO를 확장하여 sqlMapClientOracle을 받을 수 있는 DAO를 추가하여 사용하여야 한다.
-	<bean id="sqlMapClientOracle" class="egovframework.rte.psl.orm.ibatis.SqlMapClientFactoryBean">
-		<property name="mappingLocations" value="classpath:/ibatis/sqlmap/oracle/**/*_sql.xml"></property>
-        <property name="configLocation" value="classpath:/ibatis/config/oracle/sql-map-config.xml"/>
+	<bean id="sqlMapClientOracle" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="mappingLocations" value="classpath:/sqlmap/config/oracle/sql-map-config.xml"></property>
+        <property name="configLocation" value="classpath:/sqlmap/sqlmaps/**/*_oracle.xml"/>
         <property name="dataSource" ref="dataSourceOracle"/>
     </bean>
     -->

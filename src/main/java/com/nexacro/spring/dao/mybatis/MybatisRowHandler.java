@@ -32,6 +32,28 @@ rowHandler.sendRemainData();
  *
  */
 public class MybatisRowHandler implements ResultHandler {
+	
+	
+	/*
+
+다중 DBMS 사용 시 AbstractDAO를 사용하여 처리 하거나 Mapper 인터페이스를 이용한 처리 방법 두가지로 처리 한다.
+@Resource(name = "otherSqlSession")
+public void setSqlSessionFactory(SqlSessionFactory sqlSession) {
+	super.setSqlSessionFactory(sqlSession);
+}
+	
+Mapper 인터페이스를 활용한 방법으로 제시한 가이드에 따라 Mapper인터페이스를 작성해주시고, MapperConfigurer 빈설정 시 아래와 같이 변경해주시면 됩니다.
+<bean class="egovframework.rte.psl.dataaccess.mapper.MapperConfigurer">
+		<property name="basePackage" value="풀패키지명" />
+		<property name="sqlSessionFactoryBeanName" ref="sqlSession" />
+</bean>
+
+<bean class="egovframework.rte.psl.dataaccess.mapper.MapperConfigurer">
+		<property name="basePackage" value="풀패키지명" />
+		<property name="sqlSessionFactoryBeanName" ref="otherSqlSession" />
+</bean>
+	
+	*/
 
 	private static final int DEFAULT_FIRSTROW_COUNT = 1000;
     

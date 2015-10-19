@@ -40,7 +40,7 @@ import com.nexacro.xapi.data.datatype.DataType;
 
 /**
  * <pre>
- * Statements
+ * SqlMapClientCallback interface implements.. (runtime 시 proxy 처리되어 사용된다.)
  * </pre>
  *
  * @ClassName   : SqlMapClientCallbackImpl.java

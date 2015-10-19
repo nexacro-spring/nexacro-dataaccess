@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.ResultContext;
 import org.apache.ibatis.session.ResultHandler;
+import org.apache.ibatis.session.SqlSession;
 
 import com.nexacro.spring.dao.NexacroFirstRowException;
 import com.nexacro.spring.data.NexacroFirstRowHandler;
@@ -12,6 +13,24 @@ import com.nexacro.spring.data.support.ObjectToDataSetConverter;
 import com.nexacro.xapi.data.DataSet;
 import com.nexacro.xapi.tx.PlatformException;
 
+/**
+ * mybatis를 사용하여 nexacro platform으로 대용량 데이터를 전송하려고 할때 사용되는 RowHandler 이다.
+ * <p>아래와 같은 형식으로 처리하며, 쿼리가 실행한 후 남아 있는 데이터가 존재할 수 있기 때문에 전송되지 않은 데이터를 전송한다.
+ * 
+ * <pre>
+ * 
+String statement = "nexacro.sample.service.dao.mybatis.LargeDataMybatisMapper.selectLargeData";
+Object parameter = null;
+ 
+SqlSession sqlSession = getSqlSession();
+MybatisRowHandler rowHandler = new MybatisRowHandler(firstRowHandler, sendDataSetName, firstRowCount);
+sqlSession.select(statement, parameter, rowHandler);
+// send remain data..
+rowHandler.sendRemainData();
+
+ * </pre>
+ *
+ */
 public class MybatisRowHandler implements ResultHandler {
 
 	private static final int DEFAULT_FIRSTROW_COUNT = 1000;

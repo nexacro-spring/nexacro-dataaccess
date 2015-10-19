@@ -21,7 +21,6 @@ getSqlMapClientTemplate().queryWithRowHandler("largeDataDAO.selectLargeData", nu
 
 // send remain data..
 rowHandler.sendRemainData();
-
  * 
  * </pre>
  * 

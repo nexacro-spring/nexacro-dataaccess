@@ -21,10 +21,28 @@ import com.nexacro.spring.util.ReflectionUtil;
 /**
  * Spring 혹은 EgovFramework의 ibatis 처리 시 메타 데이터를 획득하기 위한 class이다.
  * reflection을 이용하여 메타데이터를 획득한다. 
+ * 
+ * 
  * @author Park SeongMin
  *
  */
 public class NexacroIbatisMetaDataProvider {
+	
+	/*
+		AOP를 사용할 경우 설정
+	<bean id="ibatisMetaDataProvider" class="com.nexacro.spring.dao.ibatis.NexacroIbatisMetaDataProvider" >
+		<property name="dbmsProvider" ref="dbmsProvider" />
+	</bean>
+ 
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+    <aop:config >
+        <aop:pointcut  id="ibatisSelectPointCut" expression="execution(* nexacro..service.dao.ibatis..DAO*.list*(..))" />
+        <aop:aspect ref="ibatisMetaDataProvider" >
+        	<aop:around method="getQueryMetaData" pointcut-ref="ibatisSelectPointCut"/>
+        </aop:aspect>
+    </aop:config>
+	
+	*/
 	
 	private static String SPRING_INTERFACE_NAME = "org.springframework.orm.ibatis.SqlMapClientCallback";
 	private static String EGOVFRAMEWORK_INTERFACE_NAME = "egovframework.rte.psl.orm.ibatis.SqlMapClientCallback";

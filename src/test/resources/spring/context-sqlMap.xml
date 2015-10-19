@@ -11,7 +11,8 @@
     	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
     <!-- SqlMap setup for iBATIS Database Layer (org.springframework.orm.ibatis.SqlMapClientFactoryBean)-->
-    <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+    <!--  <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"> -->
+    <bean id="sqlMapClient" class="egovframework.rte.psl.orm.ibatis.SqlMapClientFactoryBean">
         <!-- sqlmap list -->
         <property name="mappingLocations" value="classpath:/ibatis/sqlmap/hsql/**/*_sql.xml"></property>
         <!-- config path -->
@@ -21,7 +22,8 @@
     </bean>
 
     <!-- SqlMap setup for iBATIS Database Layer (org.springframework.orm.ibatis.SqlMapClientFactoryBean)-->
-    <bean id="sqlMapClientHsql" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+    <!--  <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"> -->
+    <bean id="sqlMapClientHsql" class="egovframework.rte.psl.orm.ibatis.SqlMapClientFactoryBean">
         <!-- sqlmap list -->
         <property name="mappingLocations" value="classpath:/ibatis/sqlmap/hsql/**/*_sql.xml"></property>
         <!-- config path -->
@@ -31,23 +33,11 @@
     </bean>
 
     <!-- Oracle -->
-    <!-- 
-	<bean id="sqlMapClientOracle" class="able.com.sql.ibatis.reload.ReloadableSqlMapClientFactoryBean">
+    <!-- AbstractDAO를 확장하여 sqlMapClientOracle을 받을 수 있는 DAO를 추가하여 사용하여야 한다.
+	<bean id="sqlMapClientOracle" class="egovframework.rte.psl.orm.ibatis.SqlMapClientFactoryBean">
 		<property name="mappingLocations" value="classpath:/ibatis/sqlmap/oracle/**/*_sql.xml"></property>
         <property name="configLocation" value="classpath:/ibatis/config/oracle/sql-map-config.xml"/>
         <property name="dataSource" ref="dataSourceOracle"/>
-        <property name="checkInterval" value="100"/>
     </bean>
     -->
-     
-    <!-- ibatis Log property -->
-    <!-- 
-    <bean id="sqlLogProperty" class="able.com.sql.ibatis.SqlLogProperty">
-        <property name="queryId" value="true"/>
-        <property name="logKey" value="true"/>
-        <property name="startURI" value="true"/>
-        <property name="startJsp" value="true"/>
-        <property name="targetURI" value="true"/>
-    </bean>
-     -->
 </beans>

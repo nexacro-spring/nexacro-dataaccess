@@ -18,10 +18,8 @@
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:pointcut id="requiredTx"
-			expression="execution(* nexacro..service..*Impl.*(..))"/>
-		<aop:advisor advice-ref="txAdvice"
-			pointcut-ref="requiredTx" />
+		<aop:pointcut id="requiredTx" expression="execution(* nexacro..service..*Impl.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="requiredTx" />
 	</aop:config>
 	
     <!-- oracle -->
@@ -35,10 +33,8 @@
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:pointcut id="requiredTxOracle"
-			expression="execution(* nexacro..service..*Impl.*(..))"/>
-		<aop:advisor advice-ref="txAdviceOracle"
-			pointcut-ref="requiredTxOracle" />
+		<aop:pointcut id="requiredTxOracle" expression="execution(* nexacro..service..*Impl.*(..))"/>
+		<aop:advisor advice-ref="txAdviceOracle" pointcut-ref="requiredTxOracle" />
 	</aop:config>
      -->
     

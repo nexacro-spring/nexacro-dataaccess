@@ -10,11 +10,8 @@
     
     <!-- 
        - DataSource  
-       	만약 DataSource를 추가로 생성하여 사용할 경우에는 반드시 AbstractDAO를 상속받는   
-       - 하위 Class를 추가하여 사용하여야 한다.
-       - (단, 하나 이상의 DataSource를 사용할 경우에만 해당함.)
-       -
-       - ex> 만약 mysql를 새로 추가할경우 AbstractDAO를 상속받는 MysqlAbstractDAO를 생성하여야 한다.
+       		- 둘 이상의 데이터소스를 사용해야 하는 경우 해당 데이터소스를 별도의 이름으로 정의하여
+       		해당 데이터소스를 사용하는 SqlMapClient 혹은 SqlSession에 데이터소스를 지정해서 사용해야 한다. 
      -->
 
     <!-- hsql 메모리 DBMS :  JDBC -->
@@ -43,21 +40,4 @@
     </bean>
  	-->
  	
-    <!-- mssql 
-    <bean id="dataSourceMssql" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-        <property name="url" value="jdbc:sqlserver://아이피:1433;DatabaseName=디비이름"/>
-        <property name="username" value="oms"/>
-        <property name="password" value="oms2315"/>
-    </bean>
-    -->
-
-	<!-- mysql 
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://db2:1621/rte"/>
-        <property name="username" value="rte"/>
-        <property name="password" value="rte01"/>
-    </bean>
-    -->
 </beans>

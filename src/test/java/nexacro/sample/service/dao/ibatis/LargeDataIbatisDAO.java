@@ -31,7 +31,7 @@ import com.nexacro.spring.data.NexacroFirstRowHandler;
  *  2015. 8. 17.     Park SeongMin     최초 생성
  * </pre>
  */
-@Repository("largeDataDAO")
+@Repository("largeDataIbatisDAO")
 public class LargeDataIbatisDAO extends SqlMapClientDaoSupport {
 
 	@Resource(name = "sqlMapClient")

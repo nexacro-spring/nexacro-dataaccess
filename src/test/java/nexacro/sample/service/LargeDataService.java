@@ -25,6 +25,4 @@ public interface LargeDataService {
 
     void selectLargeData(NexacroFirstRowHandler firstRowHandler, String sendDataSetName, int firstRowCount, int initDataCount);
     
-    void selectJdbcLargeData(NexacroFirstRowHandler firstRowHandler, String sendDataSetName, int firstRowCount, int initDataCount);
-    
 }

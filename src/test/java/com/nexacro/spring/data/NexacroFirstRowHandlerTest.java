@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -49,7 +50,7 @@ import com.nexacro.xapi.tx.PlatformType;
 public class NexacroFirstRowHandlerTest {
 
     @Autowired 
-    private LargeDataService largeService;
+    private ApplicationContext context;
     
     @Before
     public void setUp() throws Exception {
@@ -87,17 +88,20 @@ public class NexacroFirstRowHandlerTest {
 
     @Test
     public void testFirstRowIbatis() {
-        boolean useJdbcTemplate = false;
-        doCallService(useJdbcTemplate);
+        doCallService(LargeServiceTarget.IBATIS);
     }
     
     @Test
     public void testFirstRowJdbcTemplate() {
-        boolean useJdbcTemplate = true;
-        doCallService(useJdbcTemplate);
+        doCallService(LargeServiceTarget.JDBC);
+    }
+    
+    @Test
+    public void testFirstRowMybatis() {
+        doCallService(LargeServiceTarget.MYBATIS);
     }
 
-    private void doCallService(boolean useJdbcTemplate) {
+    private void doCallService(LargeServiceTarget target) {
         
         FirstRowTrackableServletOutputStream outputStream = new FirstRowTrackableServletOutputStream();
         NexacroFirstRowHandler firstRowHandler = createFirstRowHandler(outputStream);
@@ -106,12 +110,10 @@ public class NexacroFirstRowHandlerTest {
         int initDataCount = 1000;
         
         int firstRowCount = 100;
+        
+        LargeDataService largeDataService = (LargeDataService) context.getBean(target.getServiceName());
         // call service
-        if(useJdbcTemplate) {
-            largeService.selectJdbcLargeData(firstRowHandler, sendDataSetName, firstRowCount, initDataCount);
-        } else {
-            largeService.selectLargeData(firstRowHandler, sendDataSetName, firstRowCount, initDataCount);
-        }
+        largeDataService.selectLargeData(firstRowHandler, sendDataSetName, firstRowCount, initDataCount);
         
         // end tag
         try {
@@ -178,6 +180,29 @@ public class NexacroFirstRowHandlerTest {
         }
         
         return platformData;
+    }
+    
+    private enum LargeServiceTarget {
+    	IBATIS {
+			@Override
+			String getServiceName() {
+				return "largeDataIbatisService";
+			}
+		}
+    	, MYBATIS {
+			@Override
+			String getServiceName() {
+				return "largeDataMybatisService";
+			}
+		} 
+    	, JDBC {
+			@Override
+			String getServiceName() {
+				return "largeDataJdbcService";
+			}
+		};
+    	
+    	abstract String getServiceName();
     }
     
 }

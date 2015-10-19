@@ -35,10 +35,14 @@ import com.nexacro.xapi.tx.PlatformType;
 @Controller
 public class LargeDataController {
 
-    // @Autowired(required = false) // Type 정의
-    @Resource(name = "largeDataService")
-    // Name 정의
-    private LargeDataService largeDataService;
+    @Resource(name = "largeDataIbatisService")
+    private LargeDataService largeDataIbatisService;
+    
+    @Resource(name = "largeDataMybatisService")
+    private LargeDataService largeDataMybatisService;
+    
+    @Resource(name = "largeDataJdbcService")
+    private LargeDataService largeDataJdbcService;
 
 	private Logger logger = LoggerFactory.getLogger(LargeDataController.class);
     
@@ -70,7 +74,7 @@ browser
         String sendDataSetName = "firstRowData";
         int initDataCount = DATA_CNT; // this is dummy data!!
         
-        largeDataService.selectLargeData(firstRowHandler, sendDataSetName, firstRowCount, initDataCount);
+        largeDataIbatisService.selectLargeData(firstRowHandler, sendDataSetName, firstRowCount, initDataCount);
         
         NexacroResult result = new NexacroResult();
         return result;
@@ -89,7 +93,7 @@ browser
         int initDataCount = DATA_CNT; // this is dummy data!!
         
         
-        largeDataService.selectJdbcLargeData(firstRowHandler, sendDataSetName, firstRowCount, initDataCount);
+        largeDataJdbcService.selectLargeData(firstRowHandler, sendDataSetName, firstRowCount, initDataCount);
         
         NexacroResult result = new NexacroResult();
         return result;

@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import nexacro.sample.service.LargeDataService;
 import nexacro.sample.service.dao.ibatis.LargeDataIbatisDAO;
 import nexacro.sample.service.dao.jdbc.LargeDataJdbcDAO;
+import nexacro.sample.service.dao.mybatis.LargeDataMybatisMapper;
 
 import org.springframework.stereotype.Service;
 
@@ -28,12 +29,12 @@ import com.nexacro.spring.data.NexacroFirstRowHandler;
  *  2015. 8. 17.     Park SeongMin     최초 생성
  * </pre>
  */
-@Service("largeDataService")
-public class LargeServiceImpl implements LargeDataService {
+@Service("largeDataIbatisService")
+public class LargeServiceIbatisImpl implements LargeDataService {
 
-    @Resource(name = "largeDataDAO")
-    private LargeDataIbatisDAO largeDataDAO;
-    
+    @Resource(name = "largeDataIbatisDAO")
+    private LargeDataIbatisDAO largeDataIbatisDAO;
+
     @Resource(name = "largeDataJdbcDAO")
     private LargeDataJdbcDAO largeDataJdbcDAO;
     
@@ -47,17 +48,7 @@ public class LargeServiceImpl implements LargeDataService {
             largeDataJdbcDAO.initData(initDataCount);
         }
         isInited = true;
-        largeDataDAO.selectLargeData(firstRowHandler, sendDataSetName, firstRowCount);
-        
-    }
-
-    public void selectJdbcLargeData(NexacroFirstRowHandler firstRowHandler, String sendDataSetName, int firstRowCount, int initDataCount) {
-        
-        if(!isInited) {
-            largeDataJdbcDAO.initData(initDataCount);
-        }
-        isInited = true;
-        largeDataJdbcDAO.selectLargeData(firstRowHandler, sendDataSetName, firstRowCount);
+        largeDataIbatisDAO.selectLargeData(firstRowHandler, sendDataSetName, firstRowCount);
         
     }
 

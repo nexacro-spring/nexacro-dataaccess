@@ -28,7 +28,7 @@ public abstract class DbMetaDataGathererUtil {
         return null;
     }
     
-	public static MapMetaData generateMapMetaData(List<DbColumn> dbColumns) {
+	public static MapMetaData generateMetaDataFromDbColumns(List<DbColumn> dbColumns) {
         Map<String, Object> mapData = new HashMap<String, Object>();
         for(DbColumn column: dbColumns) {
             String name = column.getName();

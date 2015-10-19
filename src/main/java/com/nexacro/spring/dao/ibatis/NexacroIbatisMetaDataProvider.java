@@ -18,6 +18,12 @@ import com.nexacro.spring.dao.Dbms;
 import com.nexacro.spring.dao.DbmsProvider;
 import com.nexacro.spring.util.ReflectionUtil;
 
+/**
+ * Spring 혹은 EgovFramework의 ibatis 처리 시 메타 데이터를 획득하기 위한 class이다.
+ * reflection을 이용하여 메타데이터를 획득한다. 
+ * @author Park SeongMin
+ *
+ */
 public class NexacroIbatisMetaDataProvider {
 	
 	private static String SPRING_INTERFACE_NAME = "org.springframework.orm.ibatis.SqlMapClientCallback";
@@ -80,15 +86,16 @@ public class NexacroIbatisMetaDataProvider {
 			
 			// find sqlMapClientTemplate in Dao
 			Method getSqlMapClientTemplateMethod = ReflectionUtil.getMethod(daoClass, "getSqlMapClientTemplate", new Class[]{});
-			sqlMapClientTemplate = getSqlMapClientTemplateMethod.invoke(daoObject, null);
-			
-			if(sqlMapClientTemplate == null) {
-				// 근데 method를 찾았는데 왜 null 일까...
-				// TODO throws....
+			if(getSqlMapClientTemplateMethod == null) {
+				throw new UnsupportedOperationException("getSqlMapClientTemplate method is null.");
 			}
+			sqlMapClientTemplate = getSqlMapClientTemplateMethod.invoke(daoObject, null);
 			
 			// find dataSource in sqlMapClientTemplate
 			Method getDataSourceMethod = ReflectionUtil.getMethod(sqlMapClientTemplate.getClass(), "getDataSource", new Class[]{});
+			if(getDataSourceMethod == null) {
+				throw new UnsupportedOperationException("getDataSource method is null.");
+			}
 			DataSource dataSource = (DataSource) getDataSourceMethod.invoke(sqlMapClientTemplate, null);
 			
 			// get dbms
@@ -96,6 +103,9 @@ public class NexacroIbatisMetaDataProvider {
 			
 			// find sqlMapClient in dao
 			Method getSqlMapClientMethod = ReflectionUtil.getMethod(daoClass, "getSqlMapClient", new Class[]{});
+			if(getSqlMapClientMethod == null) {
+				throw new UnsupportedOperationException("getSqlMapClient method is null.");
+			}
 			SqlMapClient sqlMapClient = (SqlMapClient) getSqlMapClientMethod.invoke(daoObject, null);
 			
 			Class<?> findedSqlMapClientCallbackInterface = findSqlMapClientCallbackInterface();
@@ -123,7 +133,7 @@ public class NexacroIbatisMetaDataProvider {
 	
 	private Object createProxiedSqlMapClientCallback(Dbms dbms, SqlMapClient sqlMapClient, String statementName, Object parameterObject, Class<?> findedSqlMapClientCallbackInterface) {
 		ClassLoader classLoader = this.getClass().getClassLoader();
-		InvocationHandler sqlMapClientCallbackImpl = new SqlMapClientCallbackImpl(dbms, sqlMapClient, statementName, parameterObject);
+		InvocationHandler sqlMapClientCallbackImpl = new NexacroIbatisMetaDataGatherer(dbms, sqlMapClient, statementName, parameterObject);
 		return Proxy.newProxyInstance(classLoader, new Class[]{findedSqlMapClientCallbackInterface}, sqlMapClientCallbackImpl);
 	}
 	

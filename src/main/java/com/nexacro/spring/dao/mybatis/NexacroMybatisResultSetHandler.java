@@ -112,7 +112,7 @@ public class NexacroMybatisResultSetHandler implements Interceptor {
 				
 			}
 
-			generateMapMetaData = DbMetaDataGathererUtil.generateMapMetaData(dbColumns);
+			generateMapMetaData = DbMetaDataGathererUtil.generateMetaDataFromDbColumns(dbColumns);
 
 		} catch (Exception e) {
 			Logger logger = LoggerFactory.getLogger(this.getClass());

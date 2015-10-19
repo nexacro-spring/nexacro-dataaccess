@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,7 +57,7 @@ import com.nexacro.xapi.data.datatype.DataType;
  * </pre>
  */
 
-public class SqlMapClientCallbackImpl implements InvocationHandler {
+public class NexacroIbatisMetaDataGatherer implements InvocationHandler {
 //public class SqlMapClientCallbackImpl {
     
     private Dbms dbms;
@@ -64,7 +65,7 @@ public class SqlMapClientCallbackImpl implements InvocationHandler {
     private String statementName;
     private Object parameterObject;
     
-    public SqlMapClientCallbackImpl(Dbms dbms, SqlMapClient sqlMapClient, String statementName, Object parameterObject) {
+    public NexacroIbatisMetaDataGatherer(Dbms dbms, SqlMapClient sqlMapClient, String statementName, Object parameterObject) {
         this.dbms = dbms;
         this.sqlMapClient = sqlMapClient;
         this.statementName = statementName;
@@ -137,11 +138,15 @@ public class SqlMapClientCallbackImpl implements InvocationHandler {
 
         }
         
+        if(nexacroMetaData == null) {
+        	nexacroMetaData = new UnsupportedMetaData(null);
+        }
+        
         return nexacroMetaData;
     }
     
     // ibatis SqlExecutor executeQuery code
-    private MapMetaData executeQuery(StatementScope statementScope, Connection conn, String sqlString, Object[] parameters) throws SQLException {
+    private MapMetaData executeQuery(StatementScope statementScope, Connection conn, String sqlString, Object[] parameters) throws Exception {
      
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -175,11 +180,10 @@ public class SqlMapClientCallbackImpl implements InvocationHandler {
             // mapping MetaData and Ibatis ResultMap
             mappingDbColumnAndResultMappings(dbColumns, resultMap);
             
-            generateMapMetaData = DbMetaDataGathererUtil.generateMapMetaData(dbColumns);
+            generateMapMetaData = DbMetaDataGathererUtil.generateMetaDataFromDbColumns(dbColumns);
             
         } catch(Exception e) {
-            // logging..
-            e.printStackTrace();
+            throw e;
         } finally {
             if(rs != null) { try { rs.close(); } catch (SQLException e) {} };
             if(ps != null) { try { ps.close(); } catch (SQLException e) {} };

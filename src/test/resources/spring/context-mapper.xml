@@ -10,7 +10,7 @@
 	<!-- define the SqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:sqlmap/config/hsql/mybatis-config.xml" />
+		<property name="configLocation" value="classpath:sqlmap/config/hsql/sql-mapper-config.xml" />
 		<property name="mapperLocations" value="classpath:sqlmap/mappers/nexacro/**/*Mapper.xml" />
 	</bean>
 

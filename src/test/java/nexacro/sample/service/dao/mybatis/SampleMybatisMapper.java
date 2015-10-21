@@ -3,6 +3,7 @@ package nexacro.sample.service.dao.mybatis;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.ResultHandler;
 import org.springframework.stereotype.Repository;
 
 import nexacro.sample.vo.SampleVO;

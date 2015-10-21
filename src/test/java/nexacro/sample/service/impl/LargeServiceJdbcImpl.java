@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import nexacro.sample.service.LargeDataService;
 import nexacro.sample.service.dao.ibatis.LargeDataIbatisDAO;
 import nexacro.sample.service.dao.jdbc.LargeDataJdbcDAO;
-import nexacro.sample.service.dao.mybatis.LargeDataMybatisMapper;
+import nexacro.sample.service.dao.mybatis.LargeDataMybatisDAO;
 
 import org.springframework.stereotype.Service;
 

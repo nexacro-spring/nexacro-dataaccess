@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import nexacro.sample.service.LargeDataService;
 import nexacro.sample.service.dao.ibatis.LargeDataIbatisDAO;
 import nexacro.sample.service.dao.jdbc.LargeDataJdbcDAO;
-import nexacro.sample.service.dao.mybatis.LargeDataMybatisMapper;
+import nexacro.sample.service.dao.mybatis.LargeDataMybatisDAO;
 
 import org.springframework.stereotype.Service;
 
@@ -33,10 +33,8 @@ import com.nexacro.spring.data.NexacroFirstRowHandler;
 @Service("largeDataMybatisService")
 public class LargeServiceMybatis implements LargeDataService {
 
-	
-	
-    @Resource(name = "largeDataMybatisMapper")
-    private LargeDataMybatisMapper largeDataMybatisMapper;
+    @Resource(name = "largeDataMybatisDAO")
+    private LargeDataMybatisDAO largeDataMybatisDAO;
 
     @Resource(name = "largeDataJdbcDAO")
     private LargeDataJdbcDAO largeDataJdbcDAO;
@@ -51,7 +49,7 @@ public class LargeServiceMybatis implements LargeDataService {
             largeDataJdbcDAO.initData(initDataCount);
         }
         isInited = true;
-        largeDataMybatisMapper.selectLargeData(firstRowHandler, sendDataSetName, firstRowCount);
+        largeDataMybatisDAO.selectLargeData(firstRowHandler, sendDataSetName, firstRowCount);
         
     }
 

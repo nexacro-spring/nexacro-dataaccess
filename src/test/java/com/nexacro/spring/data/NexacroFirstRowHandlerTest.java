@@ -7,6 +7,8 @@ import java.util.List;
 import javax.servlet.ServletOutputStream;
 
 import nexacro.sample.service.LargeDataService;
+import nexacro.sample.service.impl.LargeServiceMybatis;
+import nexacro.sample.service.impl.SampleServiceMybatisImpl;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -98,9 +100,15 @@ public class NexacroFirstRowHandlerTest {
     
     @Test
     public void testFirstRowMybatis() {
-        doCallService(LargeServiceTarget.MYBATIS);
+        doCallService(LargeServiceTarget.MYBATIS_DAO);
+    }
+    
+    @Test
+    public void testFirstRowMybatisWithInterface() {
+    	doCallService(LargeServiceTarget.MYBATIS_MAPPER);
     }
 
+    
     private void doCallService(LargeServiceTarget target) {
         
         FirstRowTrackableServletOutputStream outputStream = new FirstRowTrackableServletOutputStream();
@@ -189,12 +197,18 @@ public class NexacroFirstRowHandlerTest {
 				return "largeDataIbatisService";
 			}
 		}
-    	, MYBATIS {
+    	, MYBATIS_DAO {
 			@Override
 			String getServiceName() {
 				return "largeDataMybatisService";
 			}
 		} 
+    	, MYBATIS_MAPPER {
+    		@Override
+    		String getServiceName() {
+    			return "largeMybatisWithInterfaceService";
+    		}
+    	} 
     	, JDBC {
 			@Override
 			String getServiceName() {

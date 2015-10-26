@@ -12,10 +12,9 @@ import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 
 /**
- *
  * 
- * Dbms 별 데이터 타입 처리를 위한 Provider 이다.
- * 아래는 설정 관련 sample 이다.
+ * <p>Dbms 별 데이터 타입 처리를 위한 기본 DbmsProvider 이다.
+ * <p>아래는 설정 관련 스프링 내 sample 이다.
  *
  * <pre>
  * &lt;bean id="hsqlDbms" class="com.nexacro.spring.dao.dbms.Hsql" /&gt;
@@ -25,7 +24,7 @@ import org.apache.ibatis.logging.LogFactory;
  * &lt;bean id="tiberoDbms" class="com.nexacro.spring.dao.dbms.Tibero" /&gt;
  *		
  * &lt;bean id="dbmsProvider" class="com.nexacro.spring.dao.DbVendorsProvider"&gt;
- *   &lt;property name="dbverdors"&gt;
+ *   &lt;property name="dbvendors"&gt;
  *     &lt;map&gt;
  *	     &lt;entry key="HSQL Database Engine" value-ref="hsqlDbms"/&gt;
  *	     &lt;entry key="SQL Server" value-ref="mssqlDbms"/&gt;
@@ -33,10 +32,15 @@ import org.apache.ibatis.logging.LogFactory;
  *	   &lt;/map&gt;
  *	 &lt;/property&gt;
  * &lt;/bean&gt;
- *
  * </pre>
  * 
+ * <p>dbvendors의 key값은 {@link DatabaseMetaData#getDatabaseProductName()} 으로 정의 된다.
+ * <p>추가적인 타입 처리가 필요한 경우 {@link Dbms}를 구현하여 처리한다. 
+ * 
  * @author Park SeongMin
+ * @since 10.11.2015
+ * @version 1.0
+ * @see
  *
  */
 public class DbVendorsProvider implements DbmsProvider {
@@ -62,14 +66,14 @@ public class DbVendorsProvider implements DbmsProvider {
 
 	private static final Log log = LogFactory.getLog(BaseExecutor.class);
 
-	private Map<String, Dbms> dbverdors;
+	private Map<String, Dbms> dbvendors;
 	
-	public Map<String, Dbms> getDbverdors() {
-		return dbverdors;
+	public Map<String, Dbms> getDbvendors() {
+		return dbvendors;
 	}
 
-	public void setDbverdors(Map<String, Dbms> dbverdors) {
-		this.dbverdors = dbverdors;
+	public void setDbvendors(Map<String, Dbms> dbvendors) {
+		this.dbvendors = dbvendors;
 	}
 
 	public Dbms getDbms(Connection conn) {
@@ -78,8 +82,8 @@ public class DbVendorsProvider implements DbmsProvider {
 		
 		try {
 			String productName = getDataBaseProductName(conn);
-			if (this.dbverdors != null) {
-				Dbms dbms = dbverdors.get(productName);
+			if (this.dbvendors != null) {
+				Dbms dbms = dbvendors.get(productName);
 //				for (Map.Entry<Object, Object> property : properties.entrySet()) {
 //					if (productName.contains((String) property.getKey())) {
 //						return (String) property.getValue();

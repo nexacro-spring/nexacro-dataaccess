@@ -3,7 +3,6 @@ package nexacro.sample.service.impl;
 import javax.annotation.Resource;
 
 import nexacro.sample.service.LargeDataService;
-import nexacro.sample.service.dao.ibatis.LargeDataIbatisDAO;
 import nexacro.sample.service.dao.jdbc.LargeDataJdbcDAO;
 import nexacro.sample.service.dao.mybatis.LargeDataMybatisDAO;
 
@@ -17,18 +16,10 @@ import com.nexacro.spring.data.NexacroFirstRowHandler;
  * 그래서 Transaction을 처리 하지 않도록 sufix로 imple을 삭제 한다.
  * </pre>
  *
- * @ClassName   : LargeServiceImpl.java
- * @Description : 클래스 설명을 기술합니다.
  * @author Park SeongMin
- * @since 2015. 8. 17.
+ * @since 08.17.2015
  * @version 1.0
  * @see
- * @Modification Information
- * <pre>
- *     since          author              description
- *  ===========    =============    ===========================
- *  2015. 8. 17.     Park SeongMin     최초 생성
- * </pre>
  */
 @Service("largeDataMybatisService")
 public class LargeServiceMybatis implements LargeDataService {

@@ -7,8 +7,6 @@ import java.util.List;
 import javax.servlet.ServletOutputStream;
 
 import nexacro.sample.service.LargeDataService;
-import nexacro.sample.service.impl.LargeServiceMybatis;
-import nexacro.sample.service.impl.SampleServiceMybatisImpl;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -29,23 +27,11 @@ import com.nexacro.xapi.tx.PlatformException;
 import com.nexacro.xapi.tx.PlatformType;
 
 /**
- * <pre>
- * Statements
- * </pre>
- * 
- * @ClassName : NexacroFirstRowHandlerTest.java
- * @Description : 클래스 설명을 기술합니다.
+ * 데이터 분할 전송을 테스트 하기 위한 Test Case
  * @author Park SeongMin
- * @since 2015. 8. 18.
+ * @since 08.18.2015
  * @version 1.0
  * @see
- * @Modification Information
- * 
- *               <pre>
- *     since          author              description
- *  ===========    =============    ===========================
- *  2015. 8. 18.     Park SeongMin     최초 생성
- * </pre>
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath*:spring/context-*.xml" } )

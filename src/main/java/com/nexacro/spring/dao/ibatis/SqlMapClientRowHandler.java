@@ -24,19 +24,10 @@ rowHandler.sendRemainData();
  * 
  * </pre>
  * 
- * @ClassName : SqlMapClientRowHandler.java
- * @Description : 클래스 설명을 기술합니다.
  * @author Park SeongMin
- * @since 2015. 8. 17.
+ * @since 08.17.2015
  * @version 1.0
  * @see
- * @Modification Information
- * 
- *               <pre>
- *     since          author              description
- *  ===========    =============    ===========================
- *  2015. 8. 17.     Park SeongMin     최초 생성
- * </pre>
  */
 
 public class SqlMapClientRowHandler implements RowHandler {
@@ -78,6 +69,9 @@ public class SqlMapClientRowHandler implements RowHandler {
         }
     }
 
+    /**
+     * 데이터 분할 전송 후 남아 있는 데이터를 전송한다.
+     */
     public void sendRemainData() {
     	 // send remain data..
         DataSet remainDataSet = getDataSet();

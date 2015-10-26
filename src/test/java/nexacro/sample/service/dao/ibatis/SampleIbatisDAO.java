@@ -14,23 +14,12 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 import com.nexacro.spring.dao.ibatis.NexacroIbatisMetaDataProvider;
 
 /**
- * <pre>
  * Test를 위한 DAO Sample Class
- * </pre>
  * 
- * @ClassName   : SampleDAO.java
- * @Description : Sample DAO Class
- * @author djkim
- * @since 2012. 1. 31.
+ * @author Park SeongMin
+ * @since 08.20.2015
  * @version 1.0
  * @see
- * @Modification Information
- * 
- * <pre>
- *     since          author              description
- *  ===========    =============    ===========================
- *  2012. 1. 31.     djkim     최초 생성
- * </pre>
  */
 @Repository("sampleIbatisDAO")
 public class SampleIbatisDAO extends SqlMapClientDaoSupport {

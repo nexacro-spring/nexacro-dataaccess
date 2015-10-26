@@ -1,5 +1,14 @@
 package com.nexacro.spring.dao;
 
+
+/**
+ * orm을 통해 데이터 분할 전송시 발생하는 예외를 의미한다.
+ * 
+ * @author Park SeongMin
+ * @since 10.05.2015
+ * @version 1.0
+ *
+ */
 public class NexacroFirstRowException extends RuntimeException {
 
 	/**

@@ -16,7 +16,6 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
-import org.apache.ibatis.mapping.Discriminator;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.ResultMap;
 import org.apache.ibatis.mapping.ResultMapping;
@@ -25,12 +24,9 @@ import org.apache.ibatis.plugin.Intercepts;
 import org.apache.ibatis.plugin.Invocation;
 import org.apache.ibatis.plugin.Plugin;
 import org.apache.ibatis.plugin.Signature;
-import org.apache.ibatis.session.AutoMappingBehavior;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
 
 import com.nexacro.spring.context.SpringAppContext;
 import com.nexacro.spring.dao.DbColumn;
@@ -43,6 +39,15 @@ import com.nexacro.spring.data.support.NexacroConverterHelper;
 import com.nexacro.xapi.data.DataTypes;
 import com.nexacro.xapi.data.datatype.DataType;
 
+/**
+ * <p>Mybatis의 {@link ResultSetHandler#handleResultSets(Statement)} plugin으로  {@link NexacroMybatisMetaDataProvider}에서 메타데이터 요청시에만 실행되며, 
+ * 쿼리를 수행하고 <code>ResultSet</code>으로 부터 {@link DbmsProvider}를 이용하여 메타데이터 정보를 획득한다.
+ * 
+ * @author Park SeongMin
+ * @since 10.13.2015
+ * @version 1.0
+ * @see
+ */
 @Intercepts({ @Signature(type = ResultSetHandler.class, method = "handleResultSets", args = {Statement.class})})
 public class NexacroMybatisResultSetHandler implements Interceptor {
 

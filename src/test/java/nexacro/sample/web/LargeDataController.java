@@ -15,22 +15,12 @@ import com.nexacro.spring.data.NexacroResult;
 import com.nexacro.xapi.tx.PlatformType;
 
 /**
- * <pre>
- * Statements
- * </pre>
- *
- * @ClassName   : LargeDataController.java
- * @Description : 클래스 설명을 기술합니다.
+ * 데이터 분할 전송을 위한 Controller
+ * 
  * @author Park SeongMin
- * @since 2015. 8. 17.
+ * @since 08.17.2015
  * @version 1.0
  * @see
- * @Modification Information
- * <pre>
- *     since          author              description
- *  ===========    =============    ===========================
- *  2015. 8. 17.     Park SeongMin     최초 생성
- * </pre>
  */
 @Controller
 public class LargeDataController {

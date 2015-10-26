@@ -22,8 +22,10 @@ import com.nexacro.spring.util.ReflectionUtil;
  * Spring 혹은 EgovFramework의 ibatis 처리 시 메타 데이터를 획득하기 위한 class이다.
  * reflection을 이용하여 메타데이터를 획득한다. 
  * 
- * 
  * @author Park SeongMin
+ * @since 10.12.2015
+ * @version 1.0
+ * @see
  *
  */
 public class NexacroIbatisMetaDataProvider {

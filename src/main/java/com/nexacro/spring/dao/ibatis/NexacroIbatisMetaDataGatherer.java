@@ -8,14 +8,11 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.ClassUtils;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapExecutor;
@@ -31,7 +28,6 @@ import com.nexacro.spring.dao.DbColumn;
 import com.nexacro.spring.dao.DbMetaDataGathererUtil;
 import com.nexacro.spring.dao.Dbms;
 import com.nexacro.spring.data.metadata.NexacroMetaData;
-import com.nexacro.spring.data.metadata.support.BeanMetaData;
 import com.nexacro.spring.data.metadata.support.MapMetaData;
 import com.nexacro.spring.data.metadata.support.UnsupportedMetaData;
 import com.nexacro.spring.data.support.NexacroConverterHelper;
@@ -39,22 +35,13 @@ import com.nexacro.xapi.data.DataTypes;
 import com.nexacro.xapi.data.datatype.DataType;
 
 /**
- * <pre>
- * SqlMapClientCallback interface implements.. (runtime 시 proxy 처리되어 사용된다.)
- * </pre>
+ * <p>SqlMapClientCallback interface implements.. (runtime 시 proxy 처리되어 사용된다.)
+ * <p>Spring 혹은 egovframework 내에서 사용되는 interface가 다르기 때문에..  
  *
- * @ClassName   : SqlMapClientCallbackImpl.java
- * @Description : 클래스 설명을 기술합니다.
  * @author Park SeongMin
- * @since 2015. 8. 7.
+ * @since 08.07.2015
  * @version 1.0
  * @see
- * @Modification Information
- * <pre>
- *     since          author              description
- *  ===========    =============    ===========================
- *  2015. 8. 7.     Park SeongMin     최초 생성
- * </pre>
  */
 
 public class NexacroIbatisMetaDataGatherer implements InvocationHandler {

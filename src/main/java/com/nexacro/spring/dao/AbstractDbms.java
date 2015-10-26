@@ -10,32 +10,20 @@ import com.nexacro.xapi.data.datatype.DataTypeFactory;
 import com.nexacro.xapi.data.datatype.PlatformDataType;
 
 /**
- * <pre>
- * Statements
- * </pre>
+ * Dbms를 구현한 추상클래스로서 ResultSetMetaData로부터 데이터셋으로 변환하기 위해 X-API의 DataType을 활용하여 기본형에 대해 데이터 변환을 수행한다. 
  *
- * @ClassName   : DBMS.java
- * @Description : 클래스 설명을 기술합니다.
  * @author Park SeongMin
- * @since 2015. 8. 7.
+ * @since 08.07.2015
  * @version 1.0
  * @see
- * @Modification Information
- * <pre>
- *     since          author              description
- *  ===========    =============    ===========================
- *  2015. 8. 7.     Park SeongMin     최초 생성
- * </pre>
  */
 
 public abstract class AbstractDbms implements Dbms {
     
     /**
      * DBMS type handle
-     * Statements
      *
      * @param column
-     * @return
      */
     public abstract void handleColumnDataType(DbColumn column);
     

@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.nexacro.spring.data.metadata.NexacroMetaData;
 import com.nexacro.spring.data.metadata.support.BeanMetaData;
 import com.nexacro.spring.data.metadata.support.MapMetaData;
 

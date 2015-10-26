@@ -31,17 +31,10 @@ rowHandler.sendRemainData();
  * 
  * </pre>
  *
- * @ClassName   : JdbcRowHandler.java
  * @author Park SeongMin
- * @since 2015. 8. 18.
+ * @since 08.18.2015
  * @version 1.0
  * @see
- * @Modification Information
- * <pre>
- *     since          author              description
- *  ===========    =============    ===========================
- *  2015. 8. 18.     Park SeongMin     최초 생성
- * </pre>
  */
 
 public class JdbcRowHandler implements RowCallbackHandler {
@@ -79,6 +72,9 @@ public class JdbcRowHandler implements RowCallbackHandler {
         }
     }
     
+    /**
+     * 데이터 분할 전송 후 남아 있는 데이터를 전송한다.
+     */
     public void sendRemainData() {
    	 // send remain data..
        DataSet remainDataSet = getDataSet();

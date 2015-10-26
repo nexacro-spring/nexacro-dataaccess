@@ -14,8 +14,6 @@ import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
-import org.apache.ibatis.mapping.ParameterMapping;
-import org.apache.ibatis.mapping.ParameterMode;
 import org.apache.ibatis.mapping.ResultMap;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.plugin.Intercepts;
@@ -29,14 +27,20 @@ import org.apache.ibatis.transaction.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
 
 import com.nexacro.spring.data.metadata.NexacroMetaData;
 import com.nexacro.spring.data.metadata.support.BeanMetaData;
 import com.nexacro.spring.data.metadata.support.UnsupportedMetaData;
 
-
+/**
+ * <p>Mybatis의 {@link Executor#query(MappedStatement, Object, RowBounds, ResultHandler)} plugin으로, 
+ * 쿼리 실행 시 ({@code List} 형태의 select) 데이터가 0건일 경우 컬럼의 메타데이터 정보를 획득한다.  
+ * 
+ * @author Park SeongMin
+ * @since 10.13.2015
+ * @version 1.0
+ * @see
+ */
 @Intercepts({ @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class})})
 public class NexacroMybatisMetaDataProvider implements Interceptor {
 

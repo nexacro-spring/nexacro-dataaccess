@@ -4,7 +4,6 @@ import java.util.Map;
 
 import org.apache.ibatis.session.ResultContext;
 import org.apache.ibatis.session.ResultHandler;
-import org.apache.ibatis.session.SqlSession;
 
 import com.nexacro.spring.dao.NexacroFirstRowException;
 import com.nexacro.spring.data.NexacroFirstRowHandler;
@@ -29,7 +28,12 @@ sqlSession.select(statement, parameter, rowHandler);
 rowHandler.sendRemainData();
 
  * </pre>
- *
+ * 
+ * @author Park SeongMin
+ * @since 10.13.2015
+ * @version 1.0
+ * @see
+ * 
  */
 public class MybatisRowHandler implements ResultHandler {
 	
@@ -95,6 +99,9 @@ Mapper 인터페이스를 활용한 방법으로 제시한 가이드에 따라 M
         }
     }
 
+    /**
+     * 데이터 분할 전송 후 남아 있는 데이터를 전송한다.
+     */
     public void sendRemainData() {
     	 // send remain data..
         DataSet remainDataSet = getDataSet();

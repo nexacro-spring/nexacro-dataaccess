@@ -4,24 +4,13 @@ import com.nexacro.xapi.data.datatype.DataType;
 import com.nexacro.xapi.data.datatype.DataTypeFactory;
 
 /**
- * <pre>
- * Statements
- * </pre>
+ * ResultSetMetaData로 부터 획득한 컬럼의 메타데이터 정보를 저장한다.
  *
- * @ClassName   : DbColumn.java
- * @Description : 클래스 설명을 기술합니다.
  * @author Park SeongMin
- * @since 2015. 8. 7.
+ * @since 08.07.2015
  * @version 1.0
  * @see
- * @Modification Information
- * <pre>
- *     since          author              description
- *  ===========    =============    ===========================
- *  2015. 8. 7.     Park SeongMin     최초 생성
- * </pre>
  */
-
 public class DbColumn {
     
     /**

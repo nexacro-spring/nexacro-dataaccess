@@ -83,6 +83,20 @@
         	<version>${spring.maven.artifact.version}</version>
         </dependency>
 
+     	<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+        
+        <dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>2.2.1</version>
+			<scope>provided</scope>
+		</dependency>
+
 		<!-- ibatis 포함 된 orm 버전. 그 이상의 버전을 사용할 경우 override 해야 할 것. -->
 		<dependency>
         	<groupId>org.springframework</groupId>
@@ -150,7 +164,7 @@
             <version>4.8.1</version>
             <scope>test</scope>
         </dependency>
-       
+        
     </dependencies>
 
 </project>

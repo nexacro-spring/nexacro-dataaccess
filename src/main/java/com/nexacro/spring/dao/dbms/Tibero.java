@@ -14,6 +14,9 @@ import com.nexacro.xapi.data.datatype.PlatformDataType;
  */
 public class Tibero extends AbstractDbms {
 
+	// Tibero RDBMS JDBC 개발자 안내서
+	// http://www.tmaxdata.com/img/service/pdf/Tibero%204%20SP1%20JDBC%20Development%20Guide_v2.1.4.pdf
+	
     @Override
     public void handleColumnDataType(DbColumn column) {
         if (column == null) {

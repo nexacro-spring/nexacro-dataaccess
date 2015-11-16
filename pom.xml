@@ -120,7 +120,7 @@
         <dependency>
             <groupId>log4sql</groupId>
             <artifactId>log4sql</artifactId>
-            <version>7.8</version>
+            <version>7.0.8</version>
         </dependency>
 
         <!-- database driver -->

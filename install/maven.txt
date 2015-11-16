@@ -1,0 +1,2 @@
+# central에 존재하지 않는 library이다.
+mvn install:install-file -Dfile=./lib/log4sql.jar -DgroupId=log4sql -DartifactId=log4sql -Dversion=7.0.8 -Dpackaging=jar

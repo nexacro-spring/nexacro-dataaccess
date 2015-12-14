@@ -102,11 +102,16 @@ public class DbVendorsProvider implements DbmsProvider {
 		if (dataSource == null)
 			throw new NullPointerException("dataSource cannot be null");
 		
+		Connection connection = null;
 		try {
-			Connection connection = dataSource.getConnection();
+			connection = dataSource.getConnection();
 			return getDbms(connection);
 		} catch (SQLException e) {
 			log.error("Could not get a Dbms from dataSource", e);
+		} finally {
+			if(connection != null) {
+				try { connection.close(); } catch (SQLException e) { }
+			}
 		}
 		
 		return null;
@@ -115,18 +120,8 @@ public class DbVendorsProvider implements DbmsProvider {
 
 	
 	private String getDataBaseProductName(Connection conn) throws SQLException {
-		try {
-			DatabaseMetaData metaData = conn.getMetaData();
-			return metaData.getDatabaseProductName();
-		} finally {
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// ignored
-				}
-			}
-		}
+		DatabaseMetaData metaData = conn.getMetaData();
+		return metaData.getDatabaseProductName();
 	}
 
 }

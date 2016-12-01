@@ -162,7 +162,8 @@ public class NexacroMybatisResultSetHandler implements Interceptor {
 				String columnName = propertyMapping.getColumn();
 				String propertyName = propertyMapping.getProperty();
 				
-				if(name.equals(columnName) || name.equals(propertyName)) {
+				// 대소문자를 구별하지 않는 DB에 따라 ignorecase 처리
+				if(name.equalsIgnoreCase(columnName) || name.equalsIgnoreCase(propertyName)) {
                     if(propertyName != null) {
                         dbColumn.setName(propertyName);
                     }
@@ -183,11 +184,10 @@ public class NexacroMybatisResultSetHandler implements Interceptor {
 				
 			}// end resultMappings
 				
-			
-			// remove data for result mapping
-			if(!existColumn) {
-				dbColumns.remove(i);
-			}
+			// resultMap에 정의되지 않은 컬럼은 DB에서 전달되는 이름으로 처리 한다. (삭제 하지 않는다.)
+//			if(!existColumn) {
+//				dbColumns.remove(i);
+//			}
 			
 	    } // end dbColumns
 		

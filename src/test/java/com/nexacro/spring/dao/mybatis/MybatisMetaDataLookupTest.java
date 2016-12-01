@@ -70,8 +70,10 @@ WARN [org.springframework.beans.factory.support.DisposableBeanAdapter] Invocatio
 			Assert.fail("results should be MapMetaData bean is implemented.");
 		}
 		
-		String[] columns = {"title", "regDate", "hitCount"};
-		Class[] types = {String.class, Date.class, Integer.class};
+		String[] columns = {"title", "regDate", "hitCount"
+							, "REG_ID", "POST_ID", "CONTENTS", "COMMUNITY_ID"}; // resultMap에 정의되지 않은 컬럼은 DB에서 전달되는 이름으로 처리 한다.
+		Class[] types = {String.class, Date.class, Integer.class
+							, String.class, Integer.class, String.class, String.class};
 		
 		MapMetaData metaData = (MapMetaData) selectSampleListMap;
 		Map metaDataMap = (Map) metaData.getMetaData();
